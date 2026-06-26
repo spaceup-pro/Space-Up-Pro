@@ -5,10 +5,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Eye, EyeOff, Mail, Lock, Chrome, Facebook, ArrowRight, CheckCircle } from "lucide-react";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { login, isAuthenticated, user } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -16,6 +18,17 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [touched, setTouched] = useState({ email: false, password: false });
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (user.role === "admin" || user.role === "superadmin") {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
+    }
+  }, [isAuthenticated, user, router]);
 
   // Check for registered param
   useEffect(() => {
@@ -27,15 +40,10 @@ export default function LoginPage() {
   // Validation rules
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const passwordValid = password.length >= 6;
-  const isFormValid = emailValid && passwordValid;
 
   // Validation errors (real-time)
   const emailError = touched.email && !emailValid ? "Email không hợp lệ" : "";
   const passwordError = touched.password && !passwordValid ? "Mật khẩu phải có ít nhất 6 ký tự" : "";
-
-  // Super admin credentials
-  const SUPER_ADMIN_EMAIL = "admin@spaceup.vn";
-  const SUPER_ADMIN_PASSWORD = "admin123";
 
   const handleBlur = (field: "email" | "password") => {
     setTouched((prev) => ({ ...prev, [field]: true }));
@@ -47,31 +55,32 @@ export default function LoginPage() {
     setError("");
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
+    const success = await login(email, password);
 
-      if (!email || !password) {
-        setError("Vui lòng nhập đầy đủ thông tin");
-        return;
-      }
+    setIsLoading(false);
 
-      if (email === SUPER_ADMIN_EMAIL && password === SUPER_ADMIN_PASSWORD) {
-        router.push("/admin");
-        return;
-      }
+    if (!success) {
+      setError("Email hoặc mật khẩu không đúng");
+      return;
+    }
 
+    // Redirect based on role
+    if (email.toLowerCase().includes("admin")) {
+      router.push("/admin");
+    } else {
       router.push("/");
-    }, 1200);
+    }
   };
 
   // Social login handlers (demo)
-  const handleSocialLogin = useCallback((provider: string) => {
+  const handleSocialLogin = useCallback(async (provider: string) => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push("/");
-    }, 1000);
-  }, [router]);
+    // Simulate social login - use demo credentials
+    const demoEmail = provider === "google" ? "user@example.com" : "user@example.com";
+    await login(demoEmail, "password123");
+    setIsLoading(false);
+    router.push("/");
+  }, [login, router]);
 
   return (
     <div className="min-h-screen bg-charcoal-950 flex items-center justify-center px-4 py-8">

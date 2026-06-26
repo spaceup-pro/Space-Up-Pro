@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { WorkspacePanel } from "@/components/admin/WorkspacePanel";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { useAuth } from "@/components/providers/AuthProvider";
 import {
   Users,
   GraduationCap,
@@ -67,9 +69,18 @@ const adminTasks: Task[] = [
 ];
 
 export default function AdminDashboardPage() {
+  const router = useRouter();
+  const { user, isAuthenticated, isLoading } = useAuth();
   const [activeTask, setActiveTask] = useState<Task | null>(null);
   const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
   const [workspaceContext, setWorkspaceContext] = useState<Record<string, unknown>>({});
+
+  // Check auth and redirect if not admin
+  useEffect(() => {
+    if (!isLoading && (!isAuthenticated || (user?.role !== "admin" && user?.role !== "superadmin"))) {
+      router.push("/auth/login");
+    }
+  }, [isAuthenticated, isLoading, user, router]);
 
   // Handle task selection
   const handleTaskSelect = useCallback((task: Task) => {
@@ -94,7 +105,7 @@ export default function AdminDashboardPage() {
       <AdminSidebar tasks={adminTasks} onTaskSelect={handleTaskSelect} />
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 ml-64">
         <div className="max-w-7xl mx-auto">
           {/* Page Header */}
           <div className="mb-8">

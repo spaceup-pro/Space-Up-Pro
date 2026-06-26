@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Navigation } from "@/components/layout/Navigation";
 import { AIChatWidget } from "@/components/chat/AIChatWidget";
 import { ToastProvider } from "@/components/providers/ToastProvider";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
@@ -32,13 +33,15 @@ export default function RootLayout({
         beVietnam.variable,
         "font-sans bg-charcoal-950 text-white antialiased"
       )}>
-        <ToastProvider>
-          <Navigation />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <AIChatWidget />
-        </ToastProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <Navigation />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <AIChatWidget />
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

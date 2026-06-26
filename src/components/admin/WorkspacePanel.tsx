@@ -6,7 +6,6 @@ import { WorkspaceToolbar } from "./WorkspaceToolbar";
 import { GradeInputForm } from "./forms/GradeInputForm";
 import { ApplicationReviewForm } from "./forms/ApplicationReviewForm";
 import { StudentListTable } from "./tables/StudentListTable";
-import { cn } from "@/lib/utils";
 
 interface Task {
   id: string;
@@ -58,9 +57,9 @@ export function WorkspacePanel({
       />
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 20 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
         className="sandbox-workspace"
       >
@@ -87,7 +86,7 @@ export function WorkspacePanel({
         <WorkspaceToolbar taskType={task.type} />
 
         {/* Content Area */}
-        <div className="p-4 overflow-y-auto max-h-[calc(85vh-140px)]">
+        <div className="p-4 overflow-y-auto h-[calc(100%-140px)]">
           {renderTaskContent()}
         </div>
       </motion.div>

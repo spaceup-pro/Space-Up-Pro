@@ -137,7 +137,7 @@ export default function HomePage() {
       <footer className="py-12 px-4 border-t border-charcoal-800">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-charcoal-500">
-            © 2024 Space Up. Nền tảng Tuyển Sinh & Quản Lý Sinh Viên.
+            © 2026 Space Up. Nền tảng Tuyển Sinh & Quản Lý Sinh Viên.
           </p>
         </div>
       </footer>

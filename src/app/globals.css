@@ -132,12 +132,18 @@
   }
 
   .sandbox-workspace {
-    @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-    @apply w-[90vw] max-w-4xl max-h-[85vh];
-    @apply bg-charcoal-900 border border-charcoal-700 rounded-2xl;
+    @apply fixed top-0 left-64 bottom-0 right-0;
+    @apply bg-charcoal-900 border-l border-charcoal-700;
     @apply shadow-2xl shadow-violet-900/20;
     @apply overflow-hidden;
-    @apply animate-in fade-in zoom-in-95 duration-200;
+    @apply animate-in fade-in slide-in-from-right duration-200;
+  }
+
+  /* For smaller screens - full overlay */
+  @media (max-width: 1024px) {
+    .sandbox-workspace {
+      @apply left-0;
+    }
   }
 }
 
