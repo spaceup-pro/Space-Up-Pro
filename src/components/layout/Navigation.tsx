@@ -28,6 +28,11 @@ export function Navigation() {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
 
+  // Hide navigation on admin pages
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);

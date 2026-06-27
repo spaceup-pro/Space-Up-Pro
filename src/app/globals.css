@@ -127,22 +127,23 @@
 
   /* Admin Workspace */
   .workspace-panel {
-    @apply fixed inset-0 z-40;
+    @apply fixed inset-0 z-[60];
     @apply bg-charcoal-950/80 backdrop-blur-md;
+    @apply flex items-center justify-center p-4;
   }
 
   .sandbox-workspace {
-    @apply fixed top-0 left-64 bottom-0 right-0;
-    @apply bg-charcoal-900 border-l border-charcoal-700;
+    @apply relative w-full max-w-4xl max-h-[90vh];
+    @apply bg-charcoal-900 border border-charcoal-700 rounded-2xl;
     @apply shadow-2xl shadow-violet-900/20;
-    @apply overflow-hidden;
-    @apply animate-in fade-in slide-in-from-right duration-200;
+    @apply overflow-hidden z-50;
+    @apply animate-in fade-in zoom-in-95 duration-200;
   }
 
   /* For smaller screens - full overlay */
   @media (max-width: 1024px) {
     .sandbox-workspace {
-      @apply left-0;
+      @apply max-w-full max-h-full rounded-none;
     }
   }
 }

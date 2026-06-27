@@ -1,4 +1,4 @@
-// File: C:\Users\Administrator\Downloads\Space_Up\src\app\admin\page.tsx
+// File: C:\Users\Administrator\Downloads\Space-Up-Pro\src\app\admin\page.tsx
 import * as entry from '../../../../src/app/admin/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

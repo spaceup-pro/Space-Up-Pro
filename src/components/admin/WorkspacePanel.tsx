@@ -6,6 +6,7 @@ import { WorkspaceToolbar } from "./WorkspaceToolbar";
 import { GradeInputForm } from "./forms/GradeInputForm";
 import { ApplicationReviewForm } from "./forms/ApplicationReviewForm";
 import { StudentListTable } from "./tables/StudentListTable";
+import { ProfileForm } from "./forms/ProfileForm";
 
 interface Task {
   id: string;
@@ -37,6 +38,8 @@ export function WorkspacePanel({
         return <ApplicationReviewForm onChange={onFormChange} initialData={context} />;
       case "manage-students":
         return <StudentListTable />;
+      case "profile":
+        return <ProfileForm onChange={onFormChange} initialData={context} />;
       default:
         return (
           <div className="flex items-center justify-center h-full">

@@ -24,7 +24,7 @@ export function AdminSidebar({
   activeTaskId,
 }: AdminSidebarProps) {
   return (
-    <aside className="w-64 h-screen bg-charcoal-900 border-r border-charcoal-800 fixed left-0 top-0 flex flex-col">
+    <aside className="w-64 min-h-screen bg-charcoal-900 border-r border-charcoal-800 flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-charcoal-800">
         <Link href="/" className="flex items-center gap-3">
