@@ -18,6 +18,9 @@ const beVietnam = Be_Vietnam_Pro({
 export const metadata: Metadata = {
   title: "Space Up - Cổng Thông Tin Tuyển Sinh & Sinh Viên",
   description: "Nền tảng tuyển sinh và quản lý sinh viên hiện đại",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
