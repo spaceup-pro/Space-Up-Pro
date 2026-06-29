@@ -7,14 +7,7 @@ import { GradeInputForm } from "./forms/GradeInputForm";
 import { ApplicationReviewForm } from "./forms/ApplicationReviewForm";
 import { StudentListTable } from "./tables/StudentListTable";
 import { ProfileForm } from "./forms/ProfileForm";
-
-interface Task {
-  id: string;
-  type: string;
-  label: string;
-  icon: React.ReactNode;
-  description: string;
-}
+import { Task } from "@/app/admin/page";
 
 interface WorkspacePanelProps {
   task: Task;

@@ -40,7 +40,7 @@ const DEMO_USERS: Record<string, { password: string; user: User }> = {
       role: "student",
     },
   },
-  "SU@admin.com": {
+  "su@admin.com": {
     password: "thanhchung204",
     user: {
       id: "0",

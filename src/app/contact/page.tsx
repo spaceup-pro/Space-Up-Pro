@@ -122,14 +122,14 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + index * 0.05 }}
-                className="p-5 rounded-2xl bg-charcoal-900/50 border border-charcoal-800"
+                className="group p-5 rounded-2xl bg-charcoal-900/50 border border-charcoal-800 hover:border-violet-500/50 transition-all hover:shadow-lg hover:shadow-violet-500/10"
               >
                 <div className="flex items-start gap-4">
                   <div className={`p-3 rounded-xl ${info.color}`}>
                     {info.icon}
                   </div>
                   <div>
-                    <h3 className="text-white font-medium mb-1">{info.title}</h3>
+                    <h3 className="text-white font-medium mb-1 group-hover:text-violet-300 transition-colors">{info.title}</h3>
                     <p className="text-charcoal-400 text-sm whitespace-pre-line">{info.content}</p>
                   </div>
                 </div>

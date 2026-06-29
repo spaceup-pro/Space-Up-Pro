@@ -28,11 +28,7 @@ export function Navigation() {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
 
-  // Hide navigation on admin pages
-  if (pathname?.startsWith("/admin")) {
-    return null;
-  }
-
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -42,6 +38,7 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle body scroll lock
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -49,6 +46,11 @@ export function Navigation() {
       document.body.style.overflow = "unset";
     }
   }, [isOpen]);
+
+  // Hide navigation on admin pages
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <>
@@ -118,6 +120,14 @@ export function Navigation() {
                         </span>
                       </div>
                       <div className="p-2">
+                        <Link
+                          href="/profile"
+                          onClick={() => setShowUserMenu(false)}
+                          className="flex items-center gap-2 px-3 py-2 text-sm text-charcoal-300 hover:text-white hover:bg-charcoal-700 rounded-lg transition-all"
+                        >
+                          <User className="w-4 h-4" />
+                          Hồ sơ cá nhân
+                        </Link>
                         {user.role === "admin" || user.role === "superadmin" ? (
                           <Link
                             href="/admin"
@@ -262,6 +272,13 @@ export function Navigation() {
                       <p className="text-white font-medium">{user.name}</p>
                       <p className="text-sm text-charcoal-400">{user.email}</p>
                     </div>
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsOpen(false)}
+                      className="px-8 py-3 text-lg font-semibold text-charcoal-300 hover:text-white transition-colors text-center"
+                    >
+                      Hồ sơ cá nhân
+                    </Link>
                     {user.role === "admin" || user.role === "superadmin" ? (
                       <Link
                         href="/admin"

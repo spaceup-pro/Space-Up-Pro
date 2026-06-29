@@ -4,13 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Home, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-interface Task {
-  id: string;
-  type: string;
-  label: string;
-  icon: React.ReactNode;
-}
+import { Task } from "@/app/admin/page";
 
 interface AdminSidebarProps {
   tasks: Task[];

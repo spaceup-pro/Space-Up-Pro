@@ -74,6 +74,11 @@
     @apply hover:from-violet-500 hover:to-pink-500;
     @apply transition-all duration-200 ease-out;
     @apply focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-charcoal-900;
+    @apply inline-flex items-center gap-2;
+  }
+
+  .btn-primary svg {
+    @apply w-5 h-5;
   }
 
   .btn-secondary {
@@ -94,6 +99,31 @@
   .card-glass {
     @apply bg-charcoal-900/30 backdrop-blur-md;
     @apply border border-white/10 rounded-2xl;
+  }
+
+  /* Enhanced Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply shadow-xl;
+    box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.15);
+  }
+
+  /* Interactive glow effects */
+  .glow-violet {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  .glow-pink {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+  }
+
+  /* Animated background patterns */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgba(139, 92, 246, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   /* Micro-interactions */

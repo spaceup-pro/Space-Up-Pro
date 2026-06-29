@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Users, FileText, GraduationCap, ChevronRight, Clock, MapPin, Mail, Phone } from "lucide-react";
+import { Calendar, Users, FileText, GraduationCap, ChevronRight, Clock, MapPin, Mail, Phone, Code, Palette, Calculator, TrendingUp, Scale, Heart, Cpu as CpuIcon, Globe, Hammer, BrickWall } from "lucide-react";
 import Link from "next/link";
 
 interface AdmissionItem {
@@ -15,6 +15,17 @@ interface AdmissionItem {
   tuitionFee: number;
   status: "open" | "closing" | "closed";
   description: string;
+}
+
+interface Course {
+  id: number;
+  name: string;
+  majorName: string;
+  description: string;
+  credits: number;
+  icon: React.ElementType;
+  gradient: string;
+  image: string;
 }
 
 const admissionData: AdmissionItem[] = [
@@ -72,6 +83,110 @@ const admissionData: AdmissionItem[] = [
     tuitionFee: 40000000,
     status: "closing",
     description: "Các ngành kỹ thuật cơ khí, điện, điện tử, tự động hóa.",
+  },
+];
+
+// 10 Môn học tiêu biểu cho các ngành
+const coursesData: Course[] = [
+  {
+    id: 1,
+    name: "Lập trình Python & AI",
+    majorName: "Công nghệ Thông tin",
+    description: "Học lập trình Python, Machine Learning và Deep Learning với các thư viện TensorFlow, PyTorch.",
+    credits: 4,
+    icon: Code,
+    gradient: "from-blue-500 via-cyan-400 to-emerald-500",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop",
+  },
+  {
+    id: 2,
+    name: "Thiết kế UX/UI",
+    majorName: "Thiết kế Đồ họa",
+    description: "Nguyên lý thiết kế giao diện, nghiên cứu người dùng và tạo trải nghiệm số.",
+    credits: 3,
+    icon: Palette,
+    gradient: "from-pink-500 via-rose-400 to-violet-500",
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop",
+  },
+  {
+    id: 3,
+    name: "Kế toán Tài chính",
+    majorName: "Kế toán",
+    description: "Học nguyên lý kế toán, báo cáo tài chính, phân tích doanh nghiệp và chuẩn mực IFRS.",
+    credits: 4,
+    icon: Calculator,
+    gradient: "from-amber-500 via-orange-400 to-yellow-500",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop",
+  },
+  {
+    id: 4,
+    name: "Marketing Digital",
+    majorName: "Quản trị Kinh doanh",
+    description: "Chiến lược marketing online, SEO, Google Ads, Facebook Marketing và phân tích dữ liệu.",
+    credits: 3,
+    icon: TrendingUp,
+    gradient: "from-green-500 via-emerald-400 to-teal-500",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+  },
+  {
+    id: 5,
+    name: "Luật Kinh doanh",
+    majorName: "Luật",
+    description: "Luật thương mại, đầu tư, sở hữu trí tuệ và giải quyết tranh chấp trong kinh doanh.",
+    credits: 3,
+    icon: Scale,
+    gradient: "from-slate-500 via-gray-400 to-zinc-500",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop",
+  },
+  {
+    id: 6,
+    name: "Y học Cơ bản",
+    majorName: "Y khoa",
+    description: "Giải phẫu học, sinh lý học, bệnh học và nền tảng lâm sàng cho bác sĩ.",
+    credits: 6,
+    icon: Heart,
+    gradient: "from-red-500 via-rose-400 to-pink-500",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d42d52?w=400&h=300&fit=crop",
+  },
+  {
+    id: 7,
+    name: "Kiến trúc Máy tính",
+    majorName: "Kỹ thuật Điện",
+    description: "Thiết kế hệ thống số, vi xử lý, embedded systems và IoT.",
+    credits: 4,
+    icon: CpuIcon,
+    gradient: "from-indigo-500 via-purple-400 to-violet-500",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+  },
+  {
+    id: 8,
+    name: "Giao tiếp Quốc tế",
+    majorName: "Ngôn ngữ Anh",
+    description: "Anh ngữ học thuật, giao tiếp kinh doanh quốc tế và thương thuyết.",
+    credits: 3,
+    icon: Globe,
+    gradient: "from-violet-500 via-purple-400 to-fuchsia-500",
+    image: "https://images.unsplash.com/photo-1543269865-cbf13effca14?w=400&h=300&fit=crop",
+  },
+  {
+    id: 9,
+    name: "Cơ khí Ứng dụng",
+    majorName: "Kỹ thuật Cơ khí",
+    description: "Thiết kế CAD/CAM, gia công cơ khí chính xác và công nghệ sản xuất hiện đại.",
+    credits: 4,
+    icon: Hammer,
+    gradient: "from-orange-500 via-amber-400 to-yellow-500",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop",
+  },
+  {
+    id: 10,
+    name: "Kết cấu Công trình",
+    majorName: "Xây dựng",
+    description: "Phân tích kết cấu, thiết kế bê tông cốt thép, thép và nền móng công trình.",
+    credits: 4,
+    icon: BrickWall,
+    gradient: "from-stone-500 via-neutral-400 to-gray-500",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop",
   },
 ];
 
@@ -240,6 +355,65 @@ export default function AdmissionsPage() {
           </div>
         </motion.div>
 
+        {/* Courses Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-12"
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              Các Môn Học <span className="gradient-text">Tiêu Biểu</span>
+            </h2>
+            <p className="text-charcoal-400 max-w-2xl mx-auto">
+              Khám phá các môn học chuyên ngành được giảng dạy bởi giảng viên giàu kinh nghiệm
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            {coursesData.map((course, index) => (
+              <motion.div
+                key={course.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="group relative bg-charcoal-900/50 border border-charcoal-800 rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all hover:shadow-xl hover:shadow-violet-500/10"
+              >
+                {/* Course Image (Real Image with Icon) */}
+                <div className="h-32 relative overflow-hidden">
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: `url(${course.image})` }}
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/70 to-transparent" />
+                  {/* Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <course.icon className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  {/* Credits badge */}
+                  <div className="absolute top-3 right-3 px-2 py-1 rounded-lg bg-black/30 backdrop-blur-sm text-white text-xs font-medium">
+                    {course.credits} tín chỉ
+                  </div>
+                </div>
+
+                {/* Course Info */}
+                <div className="p-4">
+                  <h3 className="text-white font-semibold mb-1 group-hover:text-violet-300 transition-colors line-clamp-2">
+                    {course.name}
+                  </h3>
+                  <p className="text-xs text-charcoal-400 mb-2 line-clamp-1">{course.majorName}</p>
+                  <p className="text-xs text-charcoal-500 line-clamp-2">{course.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Admission List */}
         <div className="space-y-4">
           {filteredData.map((item, index) => (
@@ -248,9 +422,12 @@ export default function AdmissionsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              className="group p-6 rounded-2xl bg-charcoal-900/50 border border-charcoal-800 hover:border-violet-500/50 transition-all"
+              className="group relative overflow-hidden p-6 rounded-2xl bg-charcoal-900/50 border border-charcoal-800 hover:border-violet-500/50 transition-all hover:shadow-xl hover:shadow-violet-500/10"
             >
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 {/* Left - Info */}
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-3 mb-3">
@@ -298,10 +475,10 @@ export default function AdmissionsPage() {
               <div className="mt-5 pt-5 border-t border-charcoal-800 flex justify-end">
                 <Link
                   href={`/auth/register?admission=${item.id}`}
-                  className="flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors"
+                  className="flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors group/btn"
                 >
                   <span className="font-medium">Đăng ký ngay</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.div>

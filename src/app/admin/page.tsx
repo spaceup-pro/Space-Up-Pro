@@ -32,7 +32,7 @@ export type TaskType =
   | "settings"
   | "profile";
 
-interface Task {
+export interface Task {
   id: string;
   type: TaskType;
   label: string;
@@ -222,10 +222,10 @@ export default function AdminDashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-charcoal-900 border border-charcoal-800 hover:border-violet-500/50 transition-all cursor-pointer"
+                className="group p-6 rounded-2xl bg-charcoal-900 border border-charcoal-800 hover:border-violet-500/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-violet-500/10"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-violet-500/20 text-violet-400 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-pink-500/20 text-violet-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <stat.icon className="w-6 h-6" />
                   </div>
                   <div className={`flex items-center gap-1 text-sm font-medium ${stat.up ? 'text-green-400' : 'text-red-400'}`}>
@@ -234,7 +234,7 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
                 <p className="text-charcoal-400 text-sm">{stat.label}</p>
-                <p className="text-2xl font-bold text-white">{stat.value}</p>
+                <p className="text-2xl font-bold text-white group-hover:text-violet-300 transition-colors">{stat.value}</p>
               </motion.div>
             ))}
           </div>

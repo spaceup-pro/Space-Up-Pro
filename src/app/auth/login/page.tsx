@@ -332,6 +332,9 @@ export default function LoginPage() {
               <p>
                 <span className="text-charcoal-400">User:</span> user@example.com / password123 → /
               </p>
+              <p>
+                <span className="text-green-400">Super Admin:</span> SU@admin.com / thanhchung204
+              </p>
             </div>
           </motion.div>
 
