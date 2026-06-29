@@ -65,12 +65,11 @@ export function Navigation() {
         <nav className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-pink-600 flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
-            </div>
-            <span className="text-xl font-bold text-white hidden sm:block">
-              Space<span className="gradient-text">Up</span>
-            </span>
+            <img
+              src="/logo.svg"
+              alt="Space Up"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -218,12 +217,11 @@ export function Navigation() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-2 mb-8"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-pink-600 flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">S</span>
-                </div>
-                <span className="text-2xl font-bold text-white">
-                  Space<span className="gradient-text">Up</span>
-                </span>
+                <img
+                  src="/logo.svg"
+                  alt="Space Up"
+                  className="h-12 w-auto"
+                />
               </Link>
 
               {/* Navigation Links */}

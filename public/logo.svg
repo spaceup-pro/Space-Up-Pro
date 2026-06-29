@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <defs>
+    <!-- Gradient for rocket flame -->
+    <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#67e8f9;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0" />
+    </linearGradient>
+    <!-- Glow effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- "SPACE" text -->
+  <text x="10" y="42" font-family="'Be Vietnam Pro', 'Montserrat', sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="1">SPACE</text>
+
+  <!-- "UP" with rocket tail on U -->
+  <text x="115" y="42" font-family="'Be Vietnam Pro', 'Montserrat', sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="1">UP</text>
+
+  <!-- Rocket flame trail from U -->
+  <g filter="url(#glow)">
+    <!-- Main flame -->
+    <path d="M158 38 C162 38 165 42 165 46 C165 50 162 54 158 54 C154 54 151 50 151 46 C151 42 154 38 158 38" fill="url(#flameGradient)"/>
+    <!-- Flame tail -->
+    <path d="M158 38 C164 38 168 34 172 30 C176 26 180 22 184 20" stroke="url(#flameGradient)" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <!-- Secondary flame -->
+    <path d="M156 40 C160 40 162 43 162 46 C162 49 160 52 156 52 C152 52 150 49 150 46 C150 43 152 40 156 40" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Rocket sparkles -->
+  <circle cx="186" cy="18" r="1.5" fill="#67e8f9" opacity="0.8"/>
+  <circle cx="192" cy="24" r="1" fill="#ffffff" opacity="0.6"/>
+  <circle cx="180" cy="26" r="1" fill="#ffffff" opacity="0.5"/>
+</svg>

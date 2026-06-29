@@ -2,80 +2,88 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { GraduationCap, Calendar, FileText, Users, Award, BookOpen, ArrowRight, Sparkles, TrendingUp, Star } from "lucide-react";
+import { GraduationCap, Calendar, FileText, Users, Award, BookOpen, ArrowRight, Sparkles, TrendingUp, Star, Rocket, Brain, Target } from "lucide-react";
 
 const features = [
   {
-    title: "Thông Tin Tuyển Sinh",
-    description: "Cập nhật thông tin tuyển sinh các trường Đại học hàng đầu, deadline nộp hồ sơ.",
+    title: "Tuyển Sinh",
+    description: "Cập nhật thông tin tuyển sinh các trường Đại học hàng đầu",
     icon: GraduationCap,
     size: "large",
     gradient: "from-violet-600 to-pink-500",
     link: "/admissions",
     color: "violet",
+    emoji: "🎓",
   },
   {
-    title: "Lịch Học Trực Quan",
-    description: "Xem lịch học theo tuần, tháng với giao diện trực quan.",
+    title: "Lịch Học",
+    description: "Xem lịch học theo tuần, tháng với giao diện trực quan",
     icon: Calendar,
     size: "tall",
     gradient: "from-pink-500 to-rose-500",
     link: "/schedule",
     color: "pink",
+    emoji: "📅",
   },
   {
-    title: "Bảng Điểm",
-    description: "Theo dõi điểm số, GPA, xếp loại học tập.",
+    title: "Điểm Số",
+    description: "Theo dõi điểm số, GPA, xếp loại học tập",
     icon: FileText,
     size: "medium",
     gradient: "from-mint-500 to-emerald-500",
     link: "/profile",
     color: "mint",
+    emoji: "📊",
   },
   {
-    title: "Quản Lý Sinh Viên",
-    description: "Dành cho quản trị viên: quản lý hồ sơ sinh viên.",
-    icon: Users,
+    title: "AI Thông Minh",
+    description: "Tư vấn ngành học & định hướng tương lai",
+    icon: Brain,
     size: "medium",
     gradient: "from-cobalt-500 to-blue-500",
-    link: "/admin",
+    link: "/admissions",
     color: "cobalt",
+    emoji: "🤖",
   },
   {
-    title: "Giải Thưởng",
-    description: "Xem các chứng chỉ, giải thưởng, hoạt động ngoại khóa.",
-    icon: Award,
+    title: "Hồ Sơ",
+    description: "Xem thông tin cá nhân & quản lý hồ sơ sinh viên",
+    icon: Users,
     size: "small",
     gradient: "from-amber-500 to-orange-500",
     link: "/profile",
     color: "amber",
+    emoji: "👤",
   },
   {
     title: "Học Liệu",
-    description: "Truy cập tài liệu học tập, giáo trình, bài giảng.",
+    description: "Truy cập tài liệu học tập, giáo trình, bài giảng",
     icon: BookOpen,
     size: "small",
     gradient: "from-rose-500 to-red-500",
     link: "/materials",
     color: "rose",
+    emoji: "📚",
   },
   {
-    title: "Theo Dõi Tiến Độ",
-    description: "Cập nhật lộ trình học tập và mục tiêu cá nhân.",
-    icon: TrendingUp,
+    title: "Mục Tiêu",
+    description: "Cập nhật lộ trình học tập và mục tiêu cá nhân",
+    icon: Target,
     size: "small",
     gradient: "from-cyan-500 to-sky-500",
     link: "/profile",
     color: "cyan",
+    emoji: "🎯",
   },
   {
     title: "Sự Kiện",
-    description: "Các sự kiện, hoạt động sắp diễn ra trong năm học.",
+    description: "Các sự kiện, hoạt động sắp diễn ra trong năm học",
     icon: Star,
     size: "small",
     gradient: "from-violet-400 to-purple-500",
     link: "/events",
     color: "violet",
+    emoji: "✨",
   },
 ];
 
@@ -113,12 +121,22 @@ export function BentoGrid() {
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-all duration-500`} />
 
+            {/* Large emoji background */}
+            <div className="absolute top-2 right-2 text-6xl opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
+              {item.emoji}
+            </div>
+
             <div className="relative z-10 p-5 h-full flex flex-col justify-between">
               <div>
-                <div className={`inline-flex p-3 rounded-xl mb-3 ${colorMap[item.color]} group-hover:shadow-lg group-hover:shadow-violet-500/30 transition-all duration-300`}>
-                  <IconComponent className="w-8 h-8" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-white transition-colors">
+                {/* Big Icon with glow */}
+                <motion.div
+                  whileHover={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                  className={`inline-flex p-4 rounded-2xl mb-4 ${colorMap[item.color]} group-hover:shadow-lg group-hover:shadow-violet-500/30 transition-all duration-300`}
+                >
+                  <IconComponent className="w-10 h-10" />
+                </motion.div>
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-white transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-sm text-charcoal-400 group-hover:text-charcoal-200 line-clamp-2">
@@ -128,7 +146,7 @@ export function BentoGrid() {
 
               <div className="flex items-center justify-between mt-3 pt-3 border-t border-charcoal-700/50 group-hover:border-white/20">
                 <Link href={item.link} className="inline-flex items-center gap-1.5 text-sm font-medium text-white/70 group-hover:text-white transition-colors">
-                  <span>Xem chi tiết</span>
+                  <span>Khám phá</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </Link>
                 <motion.span initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} className="text-violet-300">
